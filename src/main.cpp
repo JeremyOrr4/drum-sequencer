@@ -1,6 +1,15 @@
 #include <iostream>
+#include <yaml-cpp/yaml.h>
+#include <filesystem>
 
 int main() {
-    std::cout << "Hello, World from C++ in Docker!" << std::endl;
+
+    YAML::Node config = YAML::LoadFile("src/yaml/test.yaml");
+
+    int bpm = config["bpm"].as<int>();
+    std::string pattern = config["tracks"]["kick"]["pattern"].as<std::string>();
+
+    std::cout << bpm; 
+
     return 0;
 }
